@@ -1,0 +1,48 @@
+pipeline{
+	agent any
+	stages{
+	    stage("clone"){
+	        steps{
+	            git "https://github.com/harshit1902/LoginPage.git";
+	        }
+	    }
+		stage("compile"){
+			steps{
+				echo "this is the compile stage";
+				}
+			}
+		stage("testing"){
+			steps{
+				echo "this is my testing stage";
+				}
+			}
+		stage("QA"){
+			steps{
+				echo "this is my QA stage";
+			}
+		}
+		stage("deploy"){
+			steps{
+				echo "this is my deploy stage";
+			}
+		}
+	}
+	post{
+		always{
+				echo "this will always run";
+		}
+		success{
+				echo "my pipeline was successfull"
+		}
+		failure{
+				echo "pipeline failed"
+		}
+		unstable{
+				echo "pipeline is unstable"
+		}
+		changed{
+				echo "this will run only if the state of the pipeline or your job is changed"
+		}
+	}
+	
+}
